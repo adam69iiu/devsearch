@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(' ')
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(' ')
 
 
 # Application definition
@@ -87,11 +87,8 @@ SIMPLE_JWT = {
 # TESTING
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
-
     'django.middleware.security.SecurityMiddleware',
-
     'whitenoise.middleware.WhiteNoiseMiddleware',
-
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -121,6 +118,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'devsearch.wsgi.application'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 
